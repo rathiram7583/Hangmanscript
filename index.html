@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <script>
+
+
+        var words=["C","JAVA","PHYTHON","JAVASCRIPT","HTML","CSS","REACT"];
+        var randomWords=words[Math.floor((Math.random() * words.length))];
+        var answerCheck= [];
+        var count=0;
+
+        
+            function createWords()
+            {
+            for(var i=0;i<randomWords.length;i++)
+            {
+                answerCheck[i]="_";
+            }
+
+            var guesses=answerCheck.join(" ");
+            document.getElementById("answer").innerHTML = guesses;
+            }
+
+            
+        function letterCheck()
+        {
+         var input=document.getElementById("letter").value;
+        
+        if( input.length > 0)
+        {
+        for(var i=0;i < randomWords.length; i++)
+
+        {
+           
+            if(randomWords[i]===input)
+            {
+                answerCheck[i]=input;
+               
+            }
+            else{
+                    console.log("Wrong Guess");
+
+            }
+            
+        }
+           
+           
+        count++;
+       
+        document.getElementById("answer") .innerHtml+=answerCheck.join(" ");
+        document.getElementById("counter").innerHTML= "No Of Clicks" + count;
+       
+       
+        }
+        if(count>5)
+        {
+            document.getElementById("wronganswer").innerHtml ="Sorry better luck next time";
+        }
+    }
+
+
+
+        </script>
+    </head>
+    <body  onload="createWords()">
+        
+        <h1>HANGMAN</h1>
+        <h3>Guess the Word !!!<h3>
+        <h2>Instruction:You have to guess the word. If you are wrong for five times you will be Hangedup</h2>
+        Enter a Letter :
+        <input type="text" id="letter" >
+        <input type="button" value="Guess"  onclick="letterCheck()"/>
+    
+        <p id="answer"></p>
+        <p id="counter"></p>
+        <p id="wronganswer"></p>
+        </body>
+
+        
+</html>
